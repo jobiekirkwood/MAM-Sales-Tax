@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Models
+﻿namespace MAM_Sales_Tax.Models
 {
     public class Product
     {

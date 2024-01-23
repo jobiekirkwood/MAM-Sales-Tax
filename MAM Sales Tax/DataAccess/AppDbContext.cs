@@ -1,7 +1,7 @@
-﻿using DataAccess.Models;
+﻿using MAM_Sales_Tax.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess
+namespace MAM_Sales_Tax.DataAccess
 {
     public class AppDbContext : DbContext
     {
