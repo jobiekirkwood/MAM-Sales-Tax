@@ -1,4 +1,4 @@
-namespace MAM_Sales_Tax.Models
+namespace MAM_Sales_Tax.ViewModels
 {
     public class ErrorViewModel
     {

@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MAM_Sales_Tax.DataAccess
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
         public DbSet<Product> Products { get; set; }
         public DbSet<TaxCategory> TaxCategories { get; set; }
         public DbSet<ImportTaxCategory> ImportTaxCategories { get; set; }
@@ -29,15 +27,15 @@ namespace MAM_Sales_Tax.DataAccess
                          );
 
             modelBuilder.Entity<Product>()
-                .HasData(new Product { Id = 1, Name = "Book", Price = 12.49, TaxCategoryId = 3, ImportTaxCategoryId = 1 },
-                new Product { Id = 2, Name = "Music CD", Price = 14.99, TaxCategoryId = 2, ImportTaxCategoryId = 1 },
-                new Product { Id = 3, Name = "Chocolate Bar", Price = 0.85, TaxCategoryId = 4, ImportTaxCategoryId = 1 },
-                new Product { Id = 4, Name = "Imported Box of Chocolates", Price = 10.00, TaxCategoryId = 4, ImportTaxCategoryId = 2 },
-                new Product { Id = 5, Name = "Imported Bottle of Perfume", Price = 47.50, TaxCategoryId = 2, ImportTaxCategoryId = 2 },
-                new Product { Id = 6, Name = "Imported Bottle of Perfume", Price = 27.99, TaxCategoryId = 2, ImportTaxCategoryId = 2 },
-                new Product { Id = 7, Name = "Bottle of Perfume", Price = 18.99, TaxCategoryId = 2, ImportTaxCategoryId = 1 },
-                new Product { Id = 8, Name = "Packet of Paracetemol", Price = 9.75, TaxCategoryId = 5, ImportTaxCategoryId = 1 },
-                new Product { Id = 9, Name = "Imported Box of Chocolates", Price = 11.25, TaxCategoryId = 4, ImportTaxCategoryId = 2 }
+                .HasData(new Product { Id = 1, Name = "Book", Price = 12.49M, TaxCategoryId = 3, ImportTaxCategoryId = 1 },
+                new Product { Id = 2, Name = "Music CD", Price = 14.99M, TaxCategoryId = 2, ImportTaxCategoryId = 1 },
+                new Product { Id = 3, Name = "Chocolate Bar", Price = 0.85M, TaxCategoryId = 4, ImportTaxCategoryId = 1 },
+                new Product { Id = 4, Name = "Imported Box of Chocolates", Price = 10.00M, TaxCategoryId = 4, ImportTaxCategoryId = 2 },
+                new Product { Id = 5, Name = "Imported Bottle of Perfume", Price = 47.50M, TaxCategoryId = 2, ImportTaxCategoryId = 2 },
+                new Product { Id = 6, Name = "Imported Bottle of Perfume", Price = 27.99M, TaxCategoryId = 2, ImportTaxCategoryId = 2 },
+                new Product { Id = 7, Name = "Bottle of Perfume", Price = 18.99M, TaxCategoryId = 2, ImportTaxCategoryId = 1 },
+                new Product { Id = 8, Name = "Packet of Paracetemol", Price = 9.75M, TaxCategoryId = 5, ImportTaxCategoryId = 1 },
+                new Product { Id = 9, Name = "Imported Box of Chocolates", Price = 11.25M, TaxCategoryId = 4, ImportTaxCategoryId = 2 }
                 );
 
 

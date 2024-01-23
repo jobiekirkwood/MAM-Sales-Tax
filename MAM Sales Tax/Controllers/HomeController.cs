@@ -6,37 +6,28 @@ using System.Diagnostics;
 
 namespace MAM_Sales_Tax.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(ILogger<HomeController> logger, AppDbContext appDbContext, TaxCalculator taxCalculator) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _appDbContext;
 
-        public HomeController(ILogger<HomeController> logger, AppDbContext appDbContext)
-        {
-            _logger = logger;
-            _appDbContext = appDbContext;
-        }
+        private readonly AppDbContext _appDbContext = appDbContext;
+        private readonly TaxCalculator _taxCalculator = taxCalculator;
 
         [HttpGet]
         public IActionResult Index()
         {
-           // List<Product> products = _appDbContext.Products.ToList();
-            List<BasketItem> basketItems =
-            [
-                new BasketItem { ProductId = 1, Quantity = 1 },
-                new BasketItem { ProductId = 2, Quantity = 1 },
-                new BasketItem { ProductId = 3, Quantity = 1 },
-                new BasketItem { ProductId = 4, Quantity = 2 },
-            ];
-             
-            return View(basketItems);
+            List<Product> products = _appDbContext.Products.ToList();
+            return View(products);
         }
 
         [HttpPost]
         public IActionResult Index(List<BasketItem> basketItems)
         {
 
-            return View();//todo add in strongly typed return view
+            if (basketItems.Count == 0)
+                return View(nameof(HomeController.Index));
+
+
+            return View();
 
         }
 

@@ -1,5 +1,5 @@
 ﻿@using MAM_Sales_Tax.Controllers
-@model List<MAM_Sales_Tax.ViewModels.BasketItem>
+@model List<Product>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,40 +10,40 @@
     <p> Welcome to MAM-mall, the best online shopping mall in the world. </p>
     <div class="row">
         <div class="col col-md-9">
-            @* <div class="d-flex p-2 flex-wrap  justify-content-center">
+            <div class="d-flex p-2 flex-wrap  justify-content-center">
                 @for (int i = 0; i < Model.Count; i++)
                 {
                     <div class="card m-auto my-1" style="width: 18rem;">
                         <img class="card-img-top" src="https://images.pexels.com/photos/953862/pexels-photo-953862.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
                         <div class="card-body">
-                            <h5 class="card-title text-break">@Model[i].Name</h5>
-                            <p class="card-text">£@Model[i].Price.ToString("0.00")</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
+                            <p type="hidden"   data-productId="@Model[i].Id"></p>
+                            <h5 class="card-title text-break"  data-productName="@Model[i].Name" >@Model[i].Name</h5>
+                            <p class="card-text" data-productPrice="@Model[i].Price.ToString("0.00")">£@Model[i].Price.ToString("0.00")</p>
+                            <a href="#" class="btn btn-primary" onclick="addToBasket(this)">Add to Basket</a>
                             <hr />
                             <p class="small">Net price shown.</p>
-                            <p class="small">Taxes added at checkout.</p>
+                            <p class="small ">Taxes added at checkout.</p>
                         </div>
                     </div>
                 }
-            </div> *@
+            </div>
         </div>
         <div class="col col-md-3 border-start">
             <em>Shopping Basket</em>
             <hr />
-            <form   asp-controller=@(ControllerHelper.GetControllerName<HomeController>()) 
-                    asp-action=@nameof(HomeController.Index) 
-                    method="post" >
-          
-                    <div id="basket">
+            <form asp-controller=@(ControllerHelper.GetControllerName<HomeController>())
+                  asp-action=@nameof(HomeController.Index)
+                  method="post">
 
-                    </div>
-              @*   <input name="basketItems[0].ProductId" value="100" />
+                <section id="basket">
+                </section>
+                @*   <input name="basketItems[0].ProductId" value="100" />
                 <input name="basketItems[0].Quantity" value="99" /> *@
 
                 <button type="submit" class="btn btn-primary">Calculate Tax</button>
 
-                </form>
-            
+            </form>
+
         </div>
     </div>
 </div>
