@@ -30,7 +30,7 @@ namespace MAM_Sales_Tax
         }
 
         
-        private static decimal CalculateTax(Product product)
+        public static decimal CalculateTax(Product product)
         {          
             decimal taxAmount = GetTaxAmount(product.TaxCategory.Rate, product.Price);
 
@@ -64,7 +64,7 @@ namespace MAM_Sales_Tax
             }
         }
 
-        internal static decimal CalculateTotalPricePlusTaxForList(List<BasketItem> basketItems)
+        public static decimal CalculateTotalPricePlusTaxForList(List<BasketItem> basketItems)
         {
             return basketItems.Sum(x => x.PricePlusTax);
         }

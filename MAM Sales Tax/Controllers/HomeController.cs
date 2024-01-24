@@ -6,10 +6,10 @@ using System.Diagnostics;
 
 namespace MAM_Sales_Tax.Controllers
 {
-    public class HomeController(AppDbContext appDbContext, TaxCalculatorService taxCalculator) : Controller
+    public class HomeController(IAppDbContext appDbContext, TaxCalculatorService taxCalculator) : Controller
     {
 
-        private readonly AppDbContext _appDbContext = appDbContext;
+        private readonly IAppDbContext _appDbContext = appDbContext;
         private readonly TaxCalculatorService _taxCalculator = taxCalculator;
 
         [HttpGet]

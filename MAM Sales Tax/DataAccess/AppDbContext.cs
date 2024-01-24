@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MAM_Sales_Tax.DataAccess
 {
-    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options), IAppDbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<TaxCategory> TaxCategories { get; set; }
