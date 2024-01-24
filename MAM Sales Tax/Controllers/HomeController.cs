@@ -6,11 +6,11 @@ using System.Diagnostics;
 
 namespace MAM_Sales_Tax.Controllers
 {
-    public class HomeController(ILogger<HomeController> logger, AppDbContext appDbContext, TaxCalculator taxCalculator) : Controller
+    public class HomeController(AppDbContext appDbContext, TaxCalculatorService taxCalculator) : Controller
     {
 
         private readonly AppDbContext _appDbContext = appDbContext;
-        private readonly TaxCalculator _taxCalculator = taxCalculator;
+        private readonly TaxCalculatorService _taxCalculator = taxCalculator;
 
         [HttpGet]
         public IActionResult Index()
@@ -26,8 +26,12 @@ namespace MAM_Sales_Tax.Controllers
             if (basketItems.Count == 0)
                 return View(nameof(HomeController.Index));
 
+            _taxCalculator.PrepareTaxForDisplayList(basketItems);
+            
+            ViewBag.TotalPrice = TaxCalculatorService.CalculateTotalPricePlusTaxForList(basketItems);
+            ViewBag.TotalTax = TaxCalculatorService.CalculateTotalTaxForList(basketItems);
 
-            return View();
+            return View("WithTax", basketItems);
 
         }
 

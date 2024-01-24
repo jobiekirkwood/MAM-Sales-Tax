@@ -30,6 +30,13 @@ namespace MAM_Sales_Tax
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+
+            //transient - new each time; scoped - new each request; singleton - only once
+            //never inject transient or scoped into singleton; never inject transient into scoped
+
+            builder.Services.AddScoped<TaxCalculatorService>();
+
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.

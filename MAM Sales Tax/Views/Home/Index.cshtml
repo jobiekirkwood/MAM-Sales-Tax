@@ -19,7 +19,7 @@
                             <p type="hidden"   data-productId="@Model[i].Id"></p>
                             <h5 class="card-title text-break"  data-productName="@Model[i].Name" >@Model[i].Name</h5>
                             <p class="card-text" data-productPrice="@Model[i].Price.ToString("0.00")">£@Model[i].Price.ToString("0.00")</p>
-                            <a href="#" class="btn btn-primary" onclick="addToBasket(this)">Add to Basket</a>
+                            <button type="button" class="btn btn-primary" onclick="addToBasket(this)">Add to Basket</button>
                             <hr />
                             <p class="small">Net price shown.</p>
                             <p class="small ">Taxes added at checkout.</p>
